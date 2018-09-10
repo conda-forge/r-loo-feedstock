@@ -1,5 +1,4 @@
-{% set version = "2.0.0" %}
-
+{% set version = '2.0.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,12 +9,13 @@ package:
 source:
   fn: loo_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/loo_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/loo/loo_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/loo_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/loo/loo_{{ version }}.tar.gz
   sha256: 54bf01914d03b847d4bae3ffc6b01457d504ea0bf015c7131c94d477548558cc
 
 build:
-  number: 0
+  merge_build_host: True  # [win]
+  number: 1
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
@@ -23,34 +23,38 @@ build:
 
 requirements:
   build:
+    - {{posix}}zip               # [win]
+  host:
     - r-base
-    - r-matrixstats >=0.50.0
-
+    - r-matrixstats >=0.52
   run:
     - r-base
-    - r-matrixstats >=0.50.0
+    - r-matrixstats >=0.52
 
 test:
   commands:
-    - $R -e "library('loo')"  # [not win]
+    - $R -e "library('loo')"           # [not win]
     - "\"%R%\" -e \"library('loo')\""  # [win]
 
 about:
-  home: http://mc-stan.org/, https://groups.google.com/forum/#!forum/stan-users
+  home: http://mc-stan.org, http://discourse.mc-stan.org
   license: GPL (>= 3)
-  summary: Efficient approximate leave-one-out cross-validation (LOO) using Pareto smoothed importance
+  summary: Efficient approximate leave-one-out cross-validation (LOO) for Bayesian models fit
+    using Markov chain Monte Carlo. The approximation uses Pareto smoothed importance
     sampling (PSIS), a new procedure for regularizing importance weights. As a byproduct
     of the calculations, we also obtain approximate standard errors for estimated predictive
-    errors and for the comparison of predictive errors between models. We also compute
-    the widely applicable information criterion (WAIC).
+    errors and for the comparison of predictive errors between models. The package also  provides
+    methods for using stacking and other model weighting techniques  to average Bayesian
+    predictive distributions.
   license_family: GPL3
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
   license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
-    - cbrueffer
     - johanneskoester
     - bgruening
     - daler
     - jdblischak
+    - cbrueffer
+    - dbast
