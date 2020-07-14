@@ -3,7 +3,7 @@ About r-loo
 
 Home: https://mc-stan.org/loo, https://discourse.mc-stan.org
 
-Package license: GPL (>= 3)
+Package license: GPL-3.0-or-later
 
 Feedstock license: BSD-3-Clause
 
