@@ -1,4 +1,4 @@
-{% set version = "2.3.0" %}
+{% set version = "2.3.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/loo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/loo/loo_{{ version }}.tar.gz
-  sha256: 9d1fc4d1c89d3427c38f81b760b6de59c8ccc9a5c3b90caa63a5a391d2aaf3d1
+  sha256: d98de21b71d9d9386131ae5ba4da051362c3ad39e0305af4f33d830f299ae08b
 
 build:
   merge_build_host: true  # [win]
@@ -39,11 +39,12 @@ test:
 
 about:
   home: https://mc-stan.org/loo, https://discourse.mc-stan.org
-  license: GPL (>= 3)
+  license: GPL-3.0-or-later
   summary: Efficient approximate leave-one-out cross-validation (LOO) for Bayesian models fit using Markov chain Monte Carlo. The approximation uses Pareto smoothed importance sampling (PSIS), a new procedure for regularizing importance weights. As a byproduct of the calculations, we also obtain approximate standard errors
     for estimated predictive errors and for the comparison of predictive errors between models. The package also  provides methods for using stacking and other model weighting techniques  to average Bayesian predictive distributions.
   license_family: GPL3
-  license_file: {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
+  license_file:
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
