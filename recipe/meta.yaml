@@ -1,4 +1,4 @@
-{% set version = "2.3.1" %}
+{% set version = "2.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/loo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/loo/loo_{{ version }}.tar.gz
-  sha256: d98de21b71d9d9386131ae5ba4da051362c3ad39e0305af4f33d830f299ae08b
+  sha256: 4955f27dc0e44192d190214a3e6e6f85bc9c447a6af8fd3294b07beb662c4105
 
 build:
   merge_build_host: true  # [win]
