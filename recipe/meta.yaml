@@ -1,6 +1,5 @@
 {% set version = "2.6.0" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-loo
@@ -13,8 +12,7 @@ source:
   sha256: 66da60fdf53a62cbc93797fa696a4cc43bce77f1721dd4bc1a58d25b3f981210
 
 build:
-  merge_build_host: true  # [win]
-  number: 1
+  number: 2
   noarch: generic
   rpaths:
     - lib/R/lib/
