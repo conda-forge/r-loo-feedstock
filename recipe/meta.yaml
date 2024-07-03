@@ -1,4 +1,4 @@
-{% set version = "2.6.0" %}
+{% set version = "2.8.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,10 +9,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/loo_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/loo/loo_{{ version }}.tar.gz
-  sha256: 66da60fdf53a62cbc93797fa696a4cc43bce77f1721dd4bc1a58d25b3f981210
+  sha256: aab727a95a2e1c0e5005188e7daa6eba52455fa0c5869130d53cee5a8963244c
 
 build:
-  number: 2
+  number: 0
   noarch: generic
   rpaths:
     - lib/R/lib/
